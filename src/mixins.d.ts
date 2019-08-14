@@ -7,11 +7,12 @@ declare module "vue/types/vue" {
     widthClient: number;
     heightClient: number;
     validationRules: object;
+
     getNumberRandom(min: number, max: number): number;
     getRandomColor(): void;
     $messageSuccess(message: string): void;
     $messageError(message: string): void;
-    // $notify(message: string, type: string, content: string): void;
+    $notification(message: string, type: string, content: string): void;
     $confirmPopup(title: string, content: string, callback?: any): void;
 
     $post(key: string, params?: any): any;

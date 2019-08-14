@@ -1,63 +1,88 @@
-import { VuexModule, Module, Mutation, Action, getModule } from "vuex-module-decorators";
-import {Vue} from 'vue-property-decorator';
-import store from '@/store';
-import { objInstance } from '../types/index';
-import auth from '@/config/auth';
-import router from '@/router';
-
+import {
+  VuexModule,
+  Module,
+  Mutation,
+  Action,
+  getModule
+} from "vuex-module-decorators";
+import { Vue } from "vue-property-decorator";
+import store from "@/store";
+import { objInstance } from "../types/index";
+import auth from "@/config/auth";
+import router from "@/router";
 
 export interface ILogin {
-  isLogged: boolean
+  isLogged: boolean;
+  infoUser: object;
 }
 
-
-@Module({dynamic: true, store, name: "login"});
+@Module({ dynamic: true, store, name: "login" })
 class Login extends VuexModule implements ILogin {
   public isLogged: boolean = false;
+  public infoUser: object = {};
+
   public vm = new Vue();
 
   @Mutation
-  setLogged(payload: boolean) {
+  private setLogged(payload: boolean) {
     this.isLogged = payload;
   }
 
   @Mutation
-  logout() {
+  private logout() {
     auth.removeToken();
-    router.push({name: "login"})
+    router.push({ name: "login" });
+  }
+
+  @Mutation
+  private setInfoUser(payload: objInstance) {
+    this.infoUser = payload;
   }
 
   @Action
-  SET_LOGGED(payload: boolean) {
-    this.context.commit("setLogged", payload)
+  public SET_LOGGED(payload: boolean) {
+    this.context.commit("setLogged", payload);
   }
 
-  @Action({rawError: true})
-  LOGIN(payload: objInstance) {
+  @Action({ rawError: true })
+  public LOGIN(payload: objInstance) {
     return this.vm.$post("Account/Login", JSON.stringify(payload));
   }
 
-
-  @Action({rawError: true})
-  CHANGE_PW(payload: objInstance) {
-    return this.vm.$post('Account/UserChangePassword', JSON.stringify(payload));
+  @Action({ rawError: true })
+  public CHANGE_PW(payload: objInstance) {
+    return this.vm.$post("Account/UserChangePassword", JSON.stringify(payload));
   }
 
-  @Action({rawError: true})
-  CREATE_USER(payload: objInstance) {
-    return this.vm.$post('Account/CreateUser', JSON.stringify(payload));
+  @Action({ rawError: true })
+  public CREATE_USER(payload: objInstance) {
+    return this.vm.$post("Account/CreateUser", JSON.stringify(payload));
   }
 
-  @Action({rawError: true})
-  REMOVE_USER(payload: objInstance) {
-    return this.vm.$post('Account/RemoveUser', JSON.stringify(payload));
+  @Action({ rawError: true })
+  public REMOVE_USER(payload: objInstance) {
+    return this.vm.$post("Account/RemoveUser", JSON.stringify(payload));
+  }
+
+  @Action({ rawError: true })
+  public VIEW_ALL_ACCOUNT_ADMIN(payload: objInstance) {
+    return this.vm.$post(
+      "Account/ViewAll",
+      JSON.stringify({
+        tokenkey: auth.getToken()
+      })
+    );
   }
 
   @Action
-  LOGOUT() {
+  public LOGOUT() {
     this.context.commit("logout");
   }
-}
 
+  @Action
+  public SET_INFO_USER(payload: objInstance) {
+    this.context.commit("setInfoUser", payload);
+  }
+}
 
 export const LoginModule = getModule(Login);

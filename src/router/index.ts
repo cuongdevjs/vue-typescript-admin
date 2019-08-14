@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import { concat } from "lodash";
+import auth from "@/config/auth";
 Vue.use(Router);
 
 const routerInstance: any = new Router({
@@ -13,8 +14,7 @@ const routerInstance: any = new Router({
         children: concat([
           {
             path: "home",
-            component: () =>
-              import(/* webpackChunkName: "home" */ "@/views/home/index.vue"),
+            component: () => import("../views/home/index.vue"),
             name: "home"
           },
           {
@@ -35,7 +35,7 @@ const routerInstance: any = new Router({
     ],
     [
       {
-        path: "/*",
+        path: "*",
         redirect: {
           name: "home"
         }
@@ -44,14 +44,14 @@ const routerInstance: any = new Router({
   )
 });
 
-// routerInstance.beforeEach((to: any, from: any, next: any) => {
-//   auth.checkIsAuthenticated().then((valid: any) => {
-//     if (valid) {
-//       to.name === "login" ? next({ name: "home" }) : next();
-//     } else {
-//       to.name !== "login" ? next({ name: "login" }) : next();
-//     }
-//   });
-// });
+routerInstance.beforeEach((to: any, from: any, next: any) => {
+  auth.checkIsAuthenticated().then((valid: any) => {
+    if (valid) {
+      to.name === "login" ? next({ name: "home" }) : next();
+    } else {
+      to.name !== "login" ? next({ name: "login" }) : next();
+    }
+  });
+});
 
 export default routerInstance;

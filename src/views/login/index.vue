@@ -21,7 +21,7 @@
     </div>
     <div class="rightSection">
       <VuePerfectScrollbar
-        class="scroll-pLogin"
+        class="pLogin-scroll"
         :settings="perfectScrollbarSetting"
       >
         <img
@@ -77,9 +77,14 @@
               </el-input>
             </el-form-item>
             <el-form-item>
-              <el-button type="primary" class="btnSubmit margin-top-10"
-                >Đăng nhập</el-button
+              <el-button
+                type="primary"
+                class="btnSubmit margin-top-10"
+                :disabled="!isValidForm"
+                @click="login"
               >
+                Đăng nhập
+              </el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -90,6 +95,8 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import { LoginModule } from "../../store/modules/login";
+import auth from "@/config/auth";
 
 @Component({
   components: {
@@ -98,84 +105,44 @@ import { Component, Vue } from "vue-property-decorator";
 })
 export default class element extends Vue {
   public isShowPassword: boolean = false;
+  public isValidForm: boolean = false;
   public form: object = {};
   public ruleForm: object = {
     username: [
       {
         required: true,
         message: "Trường này là bắt buộc",
-        trigger: "blur"
+        trigger: ["blur", "change"]
       }
     ]
   };
+
+  public checkValidationForms(formName: string) {
+    (this.$refs.form as any).validate((valid: boolean) => {
+      this.isValidForm = valid;
+    });
+  }
+
+  public saveToLocalStorage(res: any) {
+    auth.saveToken(res.tokenkey);
+    auth.set("aquaDraw_username", res.username);
+    auth.set("aquaDraw_info", res.info);
+  }
+
+  public redirectToHome() {
+    this.$messageSuccess("Đăng nhập thành công!");
+    this.$router.push({ name: "home" });
+  }
+
+  public login() {
+    this.$store.dispatch("LOGIN", this.form).then((res: any) => {
+      if (res.hasOwnProperty("tokenkey")) {
+        this.saveToLocalStorage(res);
+        LoginModule.SET_INFO_USER(res);
+        this.redirectToHome();
+      }
+    });
+  }
 }
 </script>
-<style lang="scss" scoped>
-.pLogin {
-  height: 100vh;
-  width: 100%;
-  background: #20a8d8 !important;
-  font-family: "Nunito", sans-serif;
-}
-
-.pLogin .pHeader {
-  font-size: 55px;
-  font-family: "Nunito", sans-serif;
-  font-weight: 700;
-}
-
-.tt-2 {
-  font-size: 20px;
-  opacity: 0.8;
-  width: 80%;
-}
-
-.leftSection {
-  color: #ffffff;
-}
-
-.logo-lv1 {
-  width: 200px;
-}
-
-.logo-lv2 {
-  width: 150px;
-  margin-top: -25px;
-}
-
-.rightSection {
-  max-width: 500px;
-  width: 40%;
-  height: 100%;
-  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2),
-    0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);
-  background-color: #fff;
-  min-width: 350px;
-  position: relative;
-  overflow: hidden;
-  -webkit-overflow-scrolling: touch;
-  border-radius: 8px 0 0px 8px;
-}
-
-.scroll-pLogin {
-  width: 100%;
-  height: calc(100% - 20px);
-  padding: 50px 38px 125px 38px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.title {
-  font-size: 18px;
-  text-align: center;
-  margin: 20px 0 10px 0;
-  margin-top: -15px;
-}
-
-.btnSubmit {
-  width: 100%;
-  background-color: #039be5;
-}
-</style>
+<style lang="scss" scoped></style>
