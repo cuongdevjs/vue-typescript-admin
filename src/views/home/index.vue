@@ -90,16 +90,7 @@ export default class Dashboard extends Vue {
     lng: 105.5981367021484
   };
 
-  public mounted() {
-    console.log("akflkasjf");
-    this.$post(
-      "Account/Login",
-      JSON.stringify({
-        username: "user",
-        password: "user"
-      })
-    ).then((res: any) => console.log(res));
-  }
+  public mounted() {}
 }
 </script>
 
