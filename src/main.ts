@@ -9,7 +9,7 @@ import CollapseTransition from "element-ui/lib/transitions/collapse-transition";
 // router, store
 import App from "./App-main.vue";
 import router from "./router";
-import store from "./store";
+import store from "./store/index";
 import "./config/axios";
 
 // import utilities

@@ -50,7 +50,9 @@
                 @change="checkValidationForms('form')"
               >
                 <template slot="append">
-                  <i class="fas fa-envelope-open-text clickable font-size__medium"></i>
+                  <i
+                    class="fas fa-envelope-open-text clickable font-size__medium"
+                  ></i>
                 </template>
               </el-input>
             </el-form-item>
@@ -75,10 +77,9 @@
               </el-input>
             </el-form-item>
             <el-form-item>
-              <el-button
-                type="primary"
-                class="btnSubmit margin-top-10"
-              >Đăng nhập</el-button>
+              <el-button type="primary" class="btnSubmit margin-top-10"
+                >Đăng nhập</el-button
+              >
             </el-form-item>
           </el-form>
         </div>
