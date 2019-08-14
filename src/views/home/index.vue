@@ -89,8 +89,6 @@ export default class Dashboard extends Vue {
     lat: 21.15648895639665,
     lng: 105.5981367021484
   };
-
-  public mounted() {}
 }
 </script>
 

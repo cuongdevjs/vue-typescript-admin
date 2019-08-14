@@ -19,7 +19,7 @@ axios.interceptors.request.use(
         : store.dispatch("LOGOUT");
     });
     // config progressbar start
-    temp === 0 && new Vue().$Progress.start();
+    temp === 0 && app.$Progress.start();
     temp++;
     // config data not auto convert to json data that convert to type object[key]=value
     config.paramsSerializer = (params: any) => {
@@ -39,13 +39,13 @@ axios.interceptors.response.use(
   (response: any) => {
     // config progressbar finish
     temp--;
-    temp === 0 && new Vue().$Progress.finish();
+    temp === 0 && app.$Progress.finish();
 
     return response.data;
   },
   (error: any) => {
     temp--;
-    temp === 0 && new Vue().$Progress.fail();
+    temp === 0 && app.$Progress.fail();
 
     if (error.response.status === 500) {
       new Vue().$messageError("Server errors! Try again!");

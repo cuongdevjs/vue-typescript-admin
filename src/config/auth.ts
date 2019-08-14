@@ -1,19 +1,19 @@
 export default {
   saveToken(token: string) {
-    return localStorage.setItem("bus_token", token);
+    return localStorage.setItem("aquaDraw_token", token);
   },
 
   removeToken() {
-    return localStorage.removeItem("bus_token");
+    return localStorage.removeItem("aquaDraw_token");
   },
 
   checkIsAuthenticated: function() {
-    let tokenDataStr = localStorage.getItem("bus_token");
+    let tokenDataStr = localStorage.getItem("aquaDraw_token");
     return Promise.resolve(tokenDataStr);
   },
 
   getToken() {
-    let tokenStr = localStorage.getItem("bus_token");
+    let tokenStr = localStorage.getItem("aquaDraw_token");
     return tokenStr || null;
   },
 

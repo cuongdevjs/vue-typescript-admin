@@ -1,4 +1,5 @@
 import { Vue, Component } from "vue-property-decorator";
+import { objInstance } from "../store/types/index";
 import {
   checkNotSpecialCharacter,
   allowOnlyTypeNumber,
@@ -79,42 +80,43 @@ export default class Mixin extends Vue {
   }
 
   public $messageSuccess(message: string) {
-    this.$message.success(message);
+    this.$message({
+      message: message,
+      type: "success",
+      showClose: true
+    });
   }
 
   public $messageError(message: string) {
-    this.$message.error(message);
+    this.$message({
+      message: message,
+      type: "error",
+      showClose: true
+    });
   }
 
   private hasKey<O>(obj: O, key: string | number | symbol): key is keyof O {
     return key in obj;
   }
 
-  // public $notify(message: string, type: string, content: string) {
-  //   let config: any = {
-  //     message: message,
-  //     description: content,
-  //     duration: 3.5
-  //   };
-  //   if (this.hasKey(this.$notification, type)) {
-  //     this.$notification[type](config);
-  //   }
-  // }
+  public $notification(message: string, type: string, content: string) {
+    let config: any = {
+      title: message,
+      message: content,
+      type: type
+    };
+    this.$notify(config);
+  }
 
   public $confirmPopup(title: string, content: string, callback?: any) {
-    let config: any = {
-      title: title,
-      content: content,
-      okText: "Submit",
-      okType: "danger",
-      cancelText: "Cancel",
-      onOk() {
+    this.$confirm(content, title, {
+      confirmButtonText: "Xác nhận",
+      cancelButtonText: "Huỷ bỏ",
+      type: "warning"
+    })
+      .then(() => {
         callback();
-      },
-      onCancel() {
-        () => {};
-      }
-    };
-    this.$confirm(config);
+      })
+      .catch(() => {});
   }
 }
