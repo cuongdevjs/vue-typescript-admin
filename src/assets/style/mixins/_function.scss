@@ -1,0 +1,19 @@
+@function pow($number, $end: 5) {
+  $base: 1;
+  @for $_ from 1 through end {
+    $base: $base * $number;
+  }
+  @return $base;
+}
+
+@function sum($numbers...) {
+  $sum: 0;
+  @each $number in $numbers {
+    $sum: $sum + $number;
+  }
+  @return $sum;
+}
+
+// @function distanceElem($nameAttr, $directionAttr, $value) {
+//   #{$nameAttr}-#{$directionAttr}: $value;
+// }

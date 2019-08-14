@@ -1,0 +1,183 @@
+* {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  font-family: $fontMain !important;
+  padding: 0;
+  margin: 0;
+  font-size: $fontSizeMedium;
+}
+
+.style-fullWidth {
+  width: 100%;
+}
+
+.width__100 {
+  width: 100% !important;
+}
+
+.height__100 {
+  height: 100% !important;
+}
+
+.flex-row {
+  display: flex;
+  &__center {
+    @extend .flex-row;
+    align-items: center;
+    justify-content: center;
+  }
+  &__left {
+    @extend .flex-row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  &__right {
+    @extend .flex-row;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  &__between {
+    @extend .flex-row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__around {
+    @extend .flex-row;
+    align-items: center;
+    justify-content: space-around;
+  }
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  &__center {
+    @extend .flex-col;
+    align-items: center;
+    justify-content: center;
+  }
+  &__left {
+    @extend .flex-col;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  &__right {
+    @extend .flex-col;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  &__stretch {
+    @extend .flex-col;
+    align-items: stretch;
+    justify-content: center;
+  }
+}
+
+.padding {
+  &__0 {
+    padding: 0 !important;
+  }
+  &-left__0 {
+    padding-left: 0 !important;
+  }
+  &-right__0 {
+    padding-right: 0 !important;
+  }
+  &-bottom__0 {
+    padding-bottom: 0 !important;
+  }
+  &-top__0 {
+    padding-top: 0 !important;
+  }
+  &-left__10 {
+    padding-left: 10px !important;
+  }
+  &-right__10 {
+    padding-right: 10px !important;
+  }
+  &-bottom__10 {
+    padding-bottom: 10px !important;
+  }
+  &-top__10 {
+    padding-top: 10px !important;
+  }
+}
+
+.margin {
+  &__0 {
+    margin: 0 !important;
+  }
+  &-left__0 {
+    margin-left: 0 !important;
+  }
+  &-right__0 {
+    margin-right: 0 !important;
+  }
+  &-bottom__0 {
+    margin-bottom: 0 !important;
+  }
+  &-top__0 {
+    margin-top: 0 !important;
+  }
+  &-left__10 {
+    margin-left: 10px !important;
+  }
+  &-right__10 {
+    margin-right: 10px !important;
+  }
+  &-bottom__10 {
+    margin-bottom: 10px !important;
+  }
+  &-top__10 {
+    margin-top: 10px !important;
+  }
+}
+
+.mouse {
+  &-clickable {
+    cursor: pointer;
+  }
+  &-notClick {
+    cursor: not-allowed;
+  }
+}
+
+.text {
+  &-upperCase {
+    text-transform: uppercase;
+  }
+  &lowerCase {
+    text-transform: lowercase;
+  }
+  &-capital {
+    text-transform: capitalize;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+// the :export directive is the magic sauce for webpack
+// https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
+// :export {
+//   menuText: $menuText;
+//   menuActiveText: $menuActiveText;
+//   subMenuActiveText: $subMenuActiveText;
+//   menuBg: $menuBg;
+//   menuHover: $menuHover;
+//   subMenuBg: $subMenuBg;
+//   subMenuHover: $subMenuHover;
+// }

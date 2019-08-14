@@ -1,0 +1,15 @@
+/// transform center
+@mixin transformXY($x, $y) {
+  transform: translate($x, $y);
+}
+
+@mixin size($width: "100%", $height: "100%") {
+  width: $width;
+  height: $height;
+  flex: 0 0 auto;
+}
+
+@mixin maxSize($width: "100%", $height: "100%") {
+  max-width: $width;
+  max-height: $height;
+}

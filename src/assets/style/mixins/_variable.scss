@@ -1,0 +1,82 @@
+$colorMain: #6e006e;
+$colorSecondary: #999999;
+$colorBg: #eeeeee;
+$fontMain: "Muli", sans-serif;
+$colorText: #333333;
+$transitionEase: all 0.5s cubic-bezier(0.04, 1, 0.6, 0.97);
+$transitionRegular: all 0.15s ease-out;
+$fontSizeSmall: 11px;
+$fontSizeMedium: 16px;
+$fontSizeLarge: 20px;
+$fontSizeHeader: 25px;
+$heading-color: rgba(0, 0, 0, 0.85);
+$text-color: rgba(0, 0, 0, 0.65);
+$text-color-secondary: rgba(0, 0, 0, 0.45);
+$disabled-color: rgba(0, 0, 0, 0.25);
+$border-radius-base: 4px;
+$border-color-base: #d9d9d9;
+$box-shadow-base: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+// base color
+$blue: #324157;
+$light-blue: #3a71a8;
+$red: #c03639;
+$pink: #e65d6e;
+$green: #30b08f;
+$tiffany: #4ab7bd;
+$yellow: #fec171;
+$panGreen: #30b08f;
+
+// sidebar
+$menuText: #bfcbd9;
+$menuActiveText: #409eff;
+$subMenuActiveText: #f4f4f5; // https://github.com/ElemeFE/element/issues/12951
+
+$menuBg: #304156;
+$menuHover: #263445;
+
+$subMenuBg: #1f2d3d;
+$subMenuHover: #001528;
+
+$fontRegular: "Open Sans";
+$colorBlue: #007aff;
+$colorBlueLight: #e1edfa;
+$colorRed: #e54d42;
+$colorRedLight: #f8e9e8;
+$colorYellow: #f0c330;
+$colorYellowLight: #f9f4e6;
+$colorGreen: #39ca74;
+$colorGreenLight: #e7f5ed;
+$colorSmoke: #abb4bd;
+$colorSilver: #abb4bd;
+$colorDark: #2d3e4f;
+$colorLight: hsla(240, 1%, 85%, 1);
+$colorBlack: #000;
+$colorWhite: #fff;
+
+:root {
+  --color-theme: #5bb5e7;
+  --color-blue: #007aff;
+  --color-blue-dark: #014188;
+  --color-blue-light: #e1edfa;
+  --color-red: #e54d42;
+  --color-red-light: #f8e9e8;
+  --color-yellow: #f0c330;
+  --color-yellow-light: #f9f4e6;
+  --color-green: #39ca74;
+  --color-green-light: #e7f5ed;
+  --color-smoke: #abb4bd;
+  --color-silver: #abb4bd;
+  --color-dark: #2d3e4f;
+  --color-light: hsla(240, 1%, 85%, 1);
+  --color-light-2: #edf1f2;
+  --color-black: #000;
+  --color-white: #fff;
+  --transition-ease: all 0.5s cubic-bezier(0.04, 1, 0.6, 0.97);
+  --transition-regular: all 0.15s ease-out;
+  /* --font-title: 'Play', sans-serif; */
+  /* --font-regular: 'Open Sans', sans-serif; */
+  --font-regular: "Open Sans", sans-serif;
+  --font-title: "Muli", sans-serif;
+  /* --font-regular: 'Source Sans Pro', sans-serif; */
+}
