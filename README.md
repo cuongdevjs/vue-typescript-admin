@@ -1,5 +1,7 @@
 # aquasoft-drawing
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/CuongStf/typescript-vue-practice.svg)](https://greenkeeper.io/)
+
 ## Project setup
 ```
 npm install
